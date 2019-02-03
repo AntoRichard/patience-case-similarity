@@ -1,0 +1,36 @@
+{
+  "name": "jithackathon",
+  "version": "1.0.0",
+  "description": "patient case similarity",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntoRichard/patience-case-similarity-.git"
+  },
+  "keywords": [
+    "JIT",
+    "Hackathon"
+  ],
+  "author": "antooo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntoRichard/patience-case-similarity-/issues"
+  },
+  "homepage": "https://github.com/AntoRichard/patience-case-similarity-#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.9",
+    "multer": "^1.4.1",
+    "natural-brain": "^0.3.2",
+    "tesseract.js": "^1.0.14"
+  }
+}
