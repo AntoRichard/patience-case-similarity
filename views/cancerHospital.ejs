@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HOSPITALS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+            width: 70%;
+        }
+        .sidebar {
+  position:absolute;
+  top: 70px;
+  right: -400px;
+  height: 100%;
+  width: 400px;
+  padding: 24px;
+  padding-top: 4px;
+  overflow: auto;
+  background: #eeeeee;
+}
+.lowest {
+  box-shadow: #888888 0px 0px 0px 0px;
+  right: 0px;
+}
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #floating-panel {
+            margin-left: -52px;
+        }
+        .jumbotron
+        {
+          padding:5px;
+          background-color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+  <header>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><b>C<span style="color:#13C12A;">O</span>RA</b></a>
+      </div>
+      <ul class="nav navbar-nav">
+<li class="active"><a href="/index">Home</a></li>
+<li><a href="/upload">Upload</a></li>
+<li><a href="/hospital">Hospitals</a></li>
+<li><a href="/history">History</a></li>
+   </ul>
+    </div>
+      </nav>
+      </header>
+    <!-- <div id="floating-panel"> -->
+        <!-- <button id="drop" onclick="drop()">Drop Markers</button> -->
+    <!-- </div> -->
+    <div id="map"></div>
+    <div class="sidebar lowest" style="color:black;">
+        <center><h1>HOSPITALS</h1></center>
+<div class="jumbotron">
+  <center><h3 style="color:red;">Kavery Multi Speciality Hospital</h3></center>
+  <p>____________________________</p>
+        <b><span class="glyphicon glyphicon-map-marker" style="color:red;"></span>&nbsp;&nbsp;W Canal Bank Rd, Gandhi Nagar, Adyar, Chennai, Tamil Nadu, 600020.</b><br><br>
+        <b><span class="glyphicon glyphicon-phone" style="color:red;"></span>&nbsp;&nbsp;044 2491 1526</b>
+</div>
+<div class="jumbotron">
+    <center><h3 style="color:red;">Apollo Multi Speciality Hospital</h3></center>
+  <p>____________________________</p>
+  <b><span class="glyphicon glyphicon-map-marker" style="color:red;"></span>&nbsp;&nbsp;Padma Complex, 320, Anna Salai, Rathna Nagar, Alwarpet, Chennai, Tamil Nadu 600035</b><br><br>
+  <b><span class="glyphicon glyphicon-phone" style="color:red;"></span>&nbsp;&nbsp;1860 500 1066</b>
+</div>
+<div class="jumbotron">
+    <center><h3 style="color:red;">The Best Hospital Private Limited</h3></center>
+  <p>____________________________</p>
+  <b><span class="glyphicon glyphicon-map-marker" style="color:red;"></span>&nbsp;&nbsp;9, 22, Vellalar St, Gangai Amman Colony, Kodambakkam, Chennai, Tamil Nadu 600024</b><br><br>
+  <b><span class="glyphicon glyphicon-phone" style="color:red;"></span>&nbsp;&nbsp;044 2483 2777</b>
+</div>
+<div class="jumbotron">
+    <center><h3 style="color:red;">Cancer Institute WIA</h3></center>
+  <p>____________________________</p>
+  <b><span class="glyphicon glyphicon-map-marker" style="color:red;"></span>&nbsp;&nbsp;No 38, Childrens Park Access Road, IIT Post, Guindy National Park, Guindy, Guindy National Park, Guindy, Chennai, Tamil Nadu 600036</b><br><br>
+<b><span class="glyphicon glyphicon-phone" style="color:red;"></span>&nbsp;&nbsp;044 2220 9150</b>
+</div>
+    </div>
+    <script>
+        let latt = 12.889614;
+        let lngg = 79.8723489;
+
+        var neighborhoods = [{
+                lat: 13.055401,
+                lng: 80.2089713
+            },
+            {
+                lat: 13.0732261,
+                lng: 80.250414
+            },
+            {
+                lat: 13.0016219,
+                lng: 80.2439857
+            },
+            {
+                lat: 13.0813528,
+                lng: 80.2753823
+            }
+        ];
+
+        var markers = [];
+        var map;
+        var uluru = {
+            lat: latt,
+            lng: lngg
+        }
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: {
+                    lat: latt,
+                    lng: lngg
+                }
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+
+        clearMarkers();
+        for (var i = 0; i < neighborhoods.length; i++) {
+            addMarkerWithTimeout(neighborhoods[i], i * 200);
+        }
+
+        function addMarkerWithTimeout(position, timeout) {
+            window.setTimeout(function () {
+                markers.push(new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                }));
+            }, timeout);
+        }
+
+        function clearMarkers() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD37UizytAiQ7AefQr-4WqfcWFa6FZajw0&callback=initMap">
+    </script>
+    <br>
+    <footer id="aa-footer" style="background-color:black;color:white;">
+      <!-- footer bottom -->
+      <center>
+      <div class="aa-footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="aa-footer-top-area">
+                        <h3>Contact Us</h3>
+                        <address>
+                          <p>CORA PRODUCTIONS</p>
+                          <p><span class="fa fa-envelope">&nbsp;</span>coraproduction2@gmail.com</p>
+                        </address>
+                        <div class="aa-footer-social">
+                          <a href="#"><span class="fa fa-facebook"></span></a>
+                          <a href="#"><span class="fa fa-instagram"></span></a>
+                          <a href="#"><span class="fa fa-twitter"></span></a>
+                          <a href="#"><span class="fa fa-google-plus"></span></a>
+                        </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </center>
+      <!-- footer-bottom -->
+    <div class="aa-footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="aa-footer-bottom-area">
+              <p>Designed by <a href="https://cora-production.firebaseapp.com" />CORA PRODUCTIONS</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </footer>
+
+</body>
+
+</html>

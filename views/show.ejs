@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>SIGN UP</title>
+  <link rel="stylesheet" href="signup.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><b>C<span style="color:#13C12A;">O</span>RA</b></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/index">Home</a></li>
+          <li><a href="/upload">Upload</a></li>
+          <li><a href="/hospital">Hospitals</a></li>
+          <li><a href="/history">History</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+ <br><br>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">USERNAME</th>
+        <th scope="col">DISEASE</th>
+        <th scope="col">DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%let val = 1%>
+        <% datas.forEach((data)=>{ %>
+      <tr>
+        <th scope="row"><%=val%></th>
+        <td><%= data.username %></td>
+        <td><%= data.disease %></td>
+        <td>@<%= data.date %></td>
+      </tr>
+      <%val++%>
+      <% }) %>
+    </tbody>
+  </table>
+
+<br><br>
+  <!-- footer -->
+  <footer id="aa-footer" style="background-color:black;color:white; position: absolute; bottom: 0; width: 100%">
+    <!-- footer bottom -->
+    <center>
+      <div class="aa-footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="aa-footer-top-area">
+                <h3>Contact Us</h3>
+                <address>
+                  <p>CORA PRODUCTIONS</p>
+                  <p><span class="fa fa-envelope">&nbsp;</span>coraproduction2@gmail.com</p>
+                </address>
+                <div class="aa-footer-social">
+                  <a href="#"><span class="fa fa-facebook"></span></a>
+                  <a href="#"><span class="fa fa-instagram"></span></a>
+                  <a href="#"><span class="fa fa-twitter"></span></a>
+                  <a href="#"><span class="fa fa-google-plus"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </center>
+    <!-- footer-bottom -->
+    <div class="aa-footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="aa-footer-bottom-area">
+              <p>Designed by <a href="https://cora-production.firebaseapp.com" />CORA PRODUCTIONS</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- / footer -->
+</body>
+
+</html>
